@@ -30,14 +30,11 @@
 			uniform int max_iterations;
 			
 			// Defining the lower and upper ends of the colour scale:
-			#define r_min 0.0
-			#define r_max 1.0
+			#define r_value 0.5
 			
-			#define g_min 0.0
-			#define g_max 1.0
+			#define g_value 0.5
 			
-			#define b_min 0.35
-			#define b_max 0.0
+			#define b_value 1.0
 			
 			void main() {
 				float r;
@@ -52,7 +49,7 @@
 				w_r = 0.0;
 				w_i = 0.0;
 				
-				// Colour will be black if it stays converged:
+				// Color if series stays converged:
 				r = 0.0;
 				g = 0.0;
 				b = 0.0;
@@ -66,11 +63,12 @@
 					
 					if (w_r*w_r + w_i*w_i > 4.0) {
 						// Diverged: make a pretty colour.
-						t = log(float(i + 1)) / log(float(max_iterations + 1));
+						// t = log(float(i + 1)) / log(float(max_iterations + 1));
+						t = float(i)/float(max_iterations);
 						
-						r = t*r_max + (1.0 - t)*r_min;
-						g = t*g_max + (1.0 - t)*g_min;
-						b = t*b_max + (1.0 - t)*b_min;
+						r = t*r_value;
+						g = t*g_value;
+						b = t*b_value;
 						
 						break;
 					}
@@ -80,7 +78,7 @@
 					}
 				}
 				
-				gl_FragColor = vec4(r, g, b, 1.0);
+				gl_FragColor = vec4(r, g, b, 1);
 			}
 		</script>
 		<script defer src="./main.js"></script>
