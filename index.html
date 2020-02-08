@@ -30,11 +30,11 @@
 			uniform int max_iterations;
 			
 			// Defining the lower and upper ends of the colour scale:
-			#define r_value 0.5
+			#define r_value 1.0
 			
-			#define g_value 0.5
+			#define g_value 1.0
 			
-			#define b_value 1.0
+			#define b_value 0.5
 			
 			void main() {
 				float r;
@@ -63,12 +63,11 @@
 					
 					if (w_r*w_r + w_i*w_i > 4.0) {
 						// Diverged: make a pretty colour.
-						// t = log(float(i + 1)) / log(float(max_iterations + 1));
 						t = float(i)/float(max_iterations);
 						
-						r = t*r_value;
-						g = t*g_value;
-						b = t*b_value;
+						r = 1.0-t*r_value;
+						g = 1.0-t*g_value;
+						b = 1.0-t*b_value;
 						
 						break;
 					}
@@ -84,16 +83,7 @@
 		<script defer src="./main.js"></script>
 	</head>
 	<body>
-		<div class="view">
-			<div class="header">
-
-			</div>
-			<div class="content">
-				<div class="left-view"></div>
-				<div class="main-view" id="gl-canvas-container">
-
-				</div>
-			</div>
+		<div class="view" id="gl-view">
 		</div>
 	</body>
 </html>

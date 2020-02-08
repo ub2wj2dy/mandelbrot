@@ -13,8 +13,8 @@
 		}
 	
 		const set_plot_bounds = (mid_z_r, mid_z_i, range) => {
-			var z_r = quad.geometry.attributes.vertex_z_r.array;
-			var z_i = quad.geometry.attributes.vertex_z_i.array;
+			const z_r = quad.geometry.attributes.vertex_z_r.array;
+			const z_i = quad.geometry.attributes.vertex_z_i.array;
 			
 			// First triangle:
 			z_r[0] = mid_z_r - range;
@@ -45,8 +45,8 @@
 		const vertexShader = document.getElementById("shader_vertex").textContent;
 		const fragmentShader = document.getElementById("shader_fragment").textContent
 	
-		const container = document.getElementById("gl-canvas-container");
-		const containerRect = container.getBoundingClientRect();
+		const container = document.getElementById("gl-view");
+		let containerRect = container.getBoundingClientRect();
 	
 		const scene = new THREE.Scene();
 		const renderer = new THREE.WebGLRenderer({"antialias": true});
