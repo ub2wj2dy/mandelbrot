@@ -30,11 +30,11 @@
 			uniform int max_iterations;
 			
 			// Defining the lower and upper ends of the colour scale:
-			#define r_value 1.0
+			#define r_value 0.8
 			
-			#define g_value 1.0
+			#define g_value 0.8
 			
-			#define b_value 0.5
+			#define b_value 1.0
 			
 			void main() {
 				float r;
@@ -50,9 +50,9 @@
 				w_i = 0.0;
 				
 				// Color if series stays converged:
-				r = 0.0;
-				g = 0.0;
-				b = 0.0;
+				r = 1.0;
+				g = 1.0;
+				b = 1.0;
 				
 				for (int i = 0; i < 65536; i++) {
 					u = w_r;
@@ -65,9 +65,9 @@
 						// Diverged: make a pretty colour.
 						t = float(i)/float(max_iterations);
 						
-						r = 1.0-t*r_value;
-						g = 1.0-t*g_value;
-						b = 1.0-t*b_value;
+						r = t*r_value;
+						g = t*g_value;
+						b = t*b_value;
 						
 						break;
 					}
